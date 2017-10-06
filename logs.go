@@ -7,6 +7,17 @@ import (
 	"strconv"
 )
 
+var (
+	Level = 0
+)
+
+const (
+	InfoLevel = iota
+	WarnLevel
+	ErrorLevel
+	FatalLevel
+)
+
 func prin(flag string, s ...interface{}) {
 	_, file, line, ok := runtime.Caller(2)
 	if !ok {
@@ -17,17 +28,25 @@ func prin(flag string, s ...interface{}) {
 }
 
 func Info(s ...interface{}) {
-	prin("Info", s...)
+	if Level <= InfoLevel {
+		prin("Info", s...)
+	}
 }
 
 func Warn(s ...interface{}) {
-	prin("Warn", s...)
+	if Level <= WarnLevel {
+		prin("Warn", s...)
+	}
 }
 
 func Err(s ...interface{}) {
-	prin("Error", s...)
+	if Level <= ErrorLevel {
+		prin("Error", s...)
+	}
 }
 
 func Fat(s ...interface{}) {
-	prin("Fatal", s...)
+	if Level <= FatalLevel {
+		prin("Fatal", s...)
+	}
 }
