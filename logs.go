@@ -5,10 +5,13 @@ import (
 	"log"
 	"runtime"
 	"strconv"
+	"os"
+	"io"
 )
 
 var (
 	Level = 0
+	logger *log.Logger
 )
 
 const (
@@ -18,35 +21,44 @@ const (
 	FatalLevel
 )
 
-func prin(flag string, s ...interface{}) {
+func init(){
+	SetWriter(os.Stdout)
+}
+
+func SetWriter(out io.Writer){
+	logger = log.New(out, "", log.Ldate | log.Ltime)
+}
+
+
+func Println(flag string, s ...interface{}) {
 	_, file, line, ok := runtime.Caller(2)
 	if !ok {
 		file = "???"
 		line = 0
 	}
-	log.Println(flag, file+":"+strconv.Itoa(line), fmt.Sprint(s...))
+	logger.Print(flag, file+":"+strconv.Itoa(line), fmt.Sprintln(s...))
 }
 
 func Info(s ...interface{}) {
 	if Level <= InfoLevel {
-		prin("Info", s...)
+		Println("Info", s...)
 	}
 }
 
 func Warn(s ...interface{}) {
 	if Level <= WarnLevel {
-		prin("Warn", s...)
+		Println("Warn", s...)
 	}
 }
 
 func Err(s ...interface{}) {
 	if Level <= ErrorLevel {
-		prin("Error", s...)
+		Println("Error", s...)
 	}
 }
 
 func Fat(s ...interface{}) {
 	if Level <= FatalLevel {
-		prin("Fatal", s...)
+		Println("Fatal", s...)
 	}
 }
