@@ -29,14 +29,13 @@ func SetWriter(out io.Writer){
 	logger = log.New(out, "", log.Ldate | log.Ltime)
 }
 
-
 func Println(flag string, s ...interface{}) {
 	_, file, line, ok := runtime.Caller(2)
 	if !ok {
 		file = "???"
 		line = 0
 	}
-	logger.Print(flag, file+":"+strconv.Itoa(line), " ", fmt.Sprintln(s...))
+	logger.Print(flag, " ", file+":"+strconv.Itoa(line), " ", fmt.Sprintln(s...))
 }
 
 func Info(s ...interface{}) {
