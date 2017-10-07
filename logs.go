@@ -36,7 +36,7 @@ func Println(flag string, s ...interface{}) {
 		file = "???"
 		line = 0
 	}
-	logger.Print(flag, file+":"+strconv.Itoa(line), fmt.Sprintln(s...))
+	logger.Print(flag, file+":"+strconv.Itoa(line), " ", fmt.Sprintln(s...))
 }
 
 func Info(s ...interface{}) {
