@@ -22,7 +22,7 @@ func (d *dateLog) Write(p []byte) (n int, err error) {
 	if d.day != nowDay {
 		d.day = nowDay
 		d.fd.Close()
-		d.fd, err = os.OpenFile(d.Path+time.Now().Format("2006-01-02")+".log", os.O_APPEND|os.O_CREATE, 0644)
+		d.fd, err = os.OpenFile(d.Path+time.Now().Format("2006-01-02")+".log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 		if err != nil {
 			return 0, err
 		}
