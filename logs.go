@@ -1,16 +1,16 @@
-package log
+package golog
 
 import (
 	"fmt"
+	"io"
 	"log"
+	"os"
 	"runtime"
 	"strconv"
-	"os"
-	"io"
 )
 
 var (
-	Level = 0
+	Level  = 0
 	logger *log.Logger
 )
 
@@ -21,12 +21,12 @@ const (
 	FatalLevel
 )
 
-func init(){
+func init() {
 	SetWriter(os.Stdout)
 }
 
-func SetWriter(out io.Writer){
-	logger = log.New(out, "", log.Ldate | log.Ltime)
+func SetWriter(out io.Writer) {
+	logger = log.New(out, "", log.Ldate|log.Ltime)
 }
 
 func Println(flag string, s ...interface{}) {
