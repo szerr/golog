@@ -1,19 +1,22 @@
 package golog
 
 import (
-	"./writer"
+	//"github.com/szerr/golog/writer"
 	"testing"
-	"time"
+	//"time"
 )
 
 func TestInfo(t *testing.T) {
 	Level = WarnLevel
-	SetWriter(writer.DateLog(""))
+	//SetWriter(writer.DateLog(""))
 	Info(111111)
 	Warn(111111)
 	Err(3333)
 	Fat(4444)
+	Wait()
 }
+
+/*
 func TestLog(t *testing.T) {
 	Level = WarnLevel
 	SetWriter(writer.IntervalsLog("", time.Second))
@@ -25,3 +28,4 @@ func TestLog(t *testing.T) {
 		time.Sleep(time.Second)
 	}
 }
+*/
