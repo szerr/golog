@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-//返回以日期分割的writher
+//返回以日期分割的writer
 func DateLog(path string) io.Writer {
 	var writer io.Writer = &dateLog{Path: path}
 	return writer

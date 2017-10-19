@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-//可以自定义时间间隔的writher
+//可以自定义时间间隔的writer
 func IntervalsLog(path string, intervals time.Duration) io.Writer {
 	var writer io.Writer = &intervalsLog{Path: path, intervals: intervals}
 	return writer
