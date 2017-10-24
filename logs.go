@@ -57,7 +57,7 @@ func Println(flag string, s ...interface{}) {
 
 func Debug(s ...interface{}) {
 	if Level <= InfoLevel {
-		Println("Info", s...)
+		Println("Debug", s...)
 	}
 }
 
