@@ -17,7 +17,8 @@ var (
 )
 
 const (
-	InfoLevel = iota
+	DebugLevel = iota
+	InfoLevel
 	WarnLevel
 	ErrorLevel
 	FatalLevel
@@ -52,6 +53,12 @@ func Println(flag string, s ...interface{}) {
 		}
 		logger.Print(flag, " ", file+":", line, " ", fmt.Sprintln(s...))
 	}()
+}
+
+func Debug(s ...interface{}) {
+	if Level <= InfoLevel {
+		Println("Info", s...)
+	}
 }
 
 func Info(s ...interface{}) {
